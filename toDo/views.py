@@ -17,6 +17,11 @@ from django.db import transaction
 
 from .models import Task
 from .forms import PositionForm
+from django.contrib.auth import forms  
+from django.shortcuts import redirect, render  
+from django.contrib import messages  
+from django.contrib.auth.forms import UserCreationForm  
+from .forms import CustomUserCreationForm  
 
 
 class CustomLoginView(LoginView):
@@ -30,7 +35,7 @@ class CustomLoginView(LoginView):
 
 class RegisterPage(FormView):
     template_name = 'toDO/register.html'
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     redirect_authenticated_user = True
     success_url = reverse_lazy('tasks')
 
