@@ -3,13 +3,14 @@ from django import forms
 from django.contrib.auth.models import User  
 # from .models import User
 from django.contrib.auth.forms import UserCreationForm  
-from django.core.exceptions import ValidationError  
+from django.core.exceptions import ValidationError
+from django.forms import TextInput  
 from django.forms.fields import EmailField  
 from django.forms.forms import Form
 
 class CustomUserCreationForm(UserCreationForm):  
     username = forms.CharField(label='username', min_length=5, max_length=150)  
-    email = forms.EmailField(label='email')
+    email = forms.EmailField(label='email', widget=TextInput)
     password1 = forms.CharField(label='password', widget=forms.PasswordInput)  
     password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)  
   
